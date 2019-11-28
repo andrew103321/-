@@ -7,7 +7,7 @@
 
     save("bottom",$bottom);
 
-    to("adimn.php?do=bottom");
+    to("../admin.php?do=bottom");
 
 
 ?>
