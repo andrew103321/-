@@ -1,21 +1,8 @@
+```php
 <?php
 $dsn = "mysql:host=localhost;charset=utf8;dbname=db13";
 $pdo = new PDO($dsn,'root','');
 session_start();
-
-// 判斷網站進站，是否$_SESSION有值嗎? 
-if(empty($_SESSION['total'])){
-
-    // 抓出人數，後加一
-    $total = find("total",1);
-    $total['total'] = $total['total']+1;
-
-    // 我將值給  $_SESSION 來防止 重複進入
-    $_SESSION['total']=$total['total'];
-
-    save("total",$total);
-}
-
 
 // .... 為可以用很多變數
 // select * form table where id=xxx or aaa=xxx && bbb=yyy
@@ -47,7 +34,7 @@ function find($table,...$arg){
     return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 }
 
-
+//  echo find ('admin',["acc"=>'maclk',"pw"=>'1234']);
 
 
 
@@ -134,7 +121,7 @@ function nums($table,...$arg){
             //不是陣列的話預設id
             $sql = $sql ."id='".$arg[0]."'";
         }
-         echo $sql;
+        echo $sql;
         return $pdo->exec($sql);
     }
 
@@ -143,7 +130,7 @@ function nums($table,...$arg){
 
     //連結用
     function to($path){
-        header("location:".$path);
+        header("location:$path");
     }
 
     // to("adimn.php?do=bottom");
@@ -178,11 +165,24 @@ function nums($table,...$arg){
 
 
         }
-            
+            //  echo $sql;
 
              return $pdo->exec($sql);
     }
 
-    
+            // $new=["acc"=>"john","pw"=>"4321"];
+            // echo save("admin",$new);
+
+            // $user = find("admin",2);
+            // echo "<br>";
+            // print_r($user);
+            // echo "<br>-----修改後-----<br>";
+            // $user['pw']="9872";
+            // print_r($user);
+            // echo "<br>";
+            // save("admin",$user);
+
 
 ?>
+
+```
