@@ -1,8 +1,11 @@
 <?php
     include_once "../base.php";
 
+   $table = $_POST['table'];
+    $id = $_POST["id"]; 
 
-    $data = find("title",$_POST["id"]);
+
+    $data = find($table,$id);
     
             // 新檔案不是空值
         if(!empty($_FILES['file']['tmp_name'])){
@@ -14,8 +17,8 @@
             // 更換西檔案名子，給舊檔案
             $data['file']=$name;
             // 給資料庫儲存
-            save("title",$data);
+            save( $table,$data);
         }
    
-    to("../admin.php?=title");
+    to("../admin.php?do=$table");
 ?>

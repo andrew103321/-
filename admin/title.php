@@ -1,6 +1,9 @@
+<?php
+  $useTable = "title";
+?>
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
   <p class="t cent botli">網站標題管理</p>
-  <form method="post"  action="./api/title_edit.php">
+  <form method="post"  action="./api/edit.php">
     <table width="100%">
       <tbody>
         <tr class="yel">
@@ -12,7 +15,8 @@
         </tr>
         <?php
         //從資料庫拿資料...用迴圈產生資料表
-        $rows = all('title');
+        $rows = all($useTable);
+        
           foreach($rows as $r){
           ?>
           <tr class="cent">
@@ -34,7 +38,7 @@
             
             <td>
                   <input type="button"
-                  onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./view/update_title.php?id=<?=$r['id'];?>&#39;)" value="更新圖片">
+                  onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./view/update_<?=$useTable;?>.php?id=<?=$r['id'];?>&table=<?=$useTable;?>&#39;)" value="更新圖片">
                   <input type="hidden" name='id[]'  value="<?=$r['id'];?>">
             </td>
           </tr>
@@ -45,9 +49,10 @@
     </table>
     <table style="margin-top:40px; width:70%;">
       <tbody>
+        <input type="hidden" name='table' value='<?=$useTable;?>'>
         <tr>
           <td width="200px"><input type="button"
-              onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./view/title.php&#39;)" value="新增網站標題圖片"></td>
+              onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;./view/<?=$useTable;?>.php?table=<?=$useTable;?>&#39;)" value="新增網站標題圖片"></td>
           <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
         </tr>
       </tbody>

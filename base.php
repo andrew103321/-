@@ -70,7 +70,7 @@ function all($table,...$arg){
     if(!empty($arg[1])){
         $sql=$sql . $arg[1];
     }
-    echo $sql . "<BR>";
+    // echo $sql . "<BR>";
 
    return $pdo->query($sql)->fetchAll();
    
