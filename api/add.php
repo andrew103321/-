@@ -2,7 +2,7 @@
 include_once "../base.php";
 
 
-$table = $_POST["table"];
+echo $table = $_POST["table"];
 $data=[];
 if(!empty($_FILES['file']['tmp_name'])){
     $name = $_FILES['file']['name'];
@@ -14,8 +14,19 @@ if(!empty($_FILES['file']['tmp_name'])){
         case 'title':
             if(!empty($_POST['text'])) {
             $data['text']=$_POST['text'];
-            break;
+            
+        break;
         }
+        case 'admin':
+            if(!empty($_POST['acc']) && !empty($_POST['pw']) )
+                    $data['acc'] = $_POST['acc'];
+                    $data['pw'] = $_POST['pw'];
+        break;    
+        case 'menu':
+            if(!empty($_POST['href']) && !empty($_POST['text']) )
+                    $data['href'] = $_POST['href'];
+                    $data['text'] = $_POST['text'];
+        break;    
         default:
             if(!empty($_POST['text'])) {
               $data['text']=$_POST['text'];
